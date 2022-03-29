@@ -7,7 +7,7 @@ const getUser = (req, res, next) => {
 
     if (EPHEMERAL_DB[id]) {
         // a 200 response is sent when things have gone successfully
-        res.status(200).send({ user: EPHEMERAL_DB[id] });
+        res.status(200).send({ user: { id, ...EPHEMERAL_DB[id] } });
     } else {
         // a 400 request means a request has been made that cannot be carried out
         // basically this an error on the user part and their query needs to be modified
@@ -26,14 +26,14 @@ const updateUser = (req, res, next) => {
                 email: email || EPHEMERAL_DB[id].email,
             },
         };
-        res.status(200).send({ user: EPHEMERAL_DB[id] });
+        res.status(200).send({ user: { id, ...EPHEMERAL_DB[id] } });
     } else {
         res.status(400).send({ error: 'No user found' });
     }
 };
 
 const removeUser = (req, res, next) => {
-    const { id } = req.query;
+    const { id } = req.body;
 
     if (EPHEMERAL_DB[id]) {
         delete EPHEMERAL_DB[id];
@@ -48,7 +48,7 @@ const createUser = (req, res, next) => {
 
     EPHEMERAL_DB[id] = { name, email };
 
-    res.status(200).send({ user: EPHEMERAL_DB[id] });
+    res.status(200).send({ user: { id, ...EPHEMERAL_DB[id] } });
 };
 
 module.exports = {

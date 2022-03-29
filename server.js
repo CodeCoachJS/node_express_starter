@@ -10,7 +10,10 @@ config();
 // start the app and listen for requests on a port
 const app = express();
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Running on port ${port}`));
+
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`Running on port ${port}`));
+}
 
 // we use cors library to prevent annoying cors issues
 app.use(cors());
