@@ -4,7 +4,7 @@
 
 Video Walkthrough => https://www.loom.com/share/d6c492b2834b409398e1ea170ae4359e
 
-A barebones node express app with some basic CRUD operations using an object in place of a database.
+A barebones node express app with some basic CRUD operations using an object in place of a database. Includes unit tests using `supertest` https://www.npmjs.com/package/supertest
 
 ---
 
@@ -31,6 +31,8 @@ Middlewares are methods that are called before the request goes to a controller.
 `npm start`
 
 `nodemon server.js` to start with hot reloading
+
+`npm test`
 
 ---
 
