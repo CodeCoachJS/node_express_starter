@@ -8,12 +8,10 @@ const { config } = require('dotenv');
 config();
 
 // start the app and listen for requests on a port
+// set to port to 3001 because OS Monterey uses 5000 for the airPlay control center.
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 
-if (process.env.NODE_ENV !== 'test') {
-    app.listen(port, () => console.log(`Running on port ${port}`));
-}
 
 // we use cors library to prevent annoying cors issues
 app.use(cors());
@@ -23,5 +21,9 @@ app.use(bodyParser.json());
 
 // lets load all our routes and start making requests!
 app.use(allRoutes);
+
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`Running on port ${port}`));
+}
 
 module.exports = { app };
