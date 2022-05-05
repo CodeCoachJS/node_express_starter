@@ -9,7 +9,7 @@ const { validateUserBody } = require('../middlewares/validateUserBody');
 
 const router = Router();
 
-// listen for incoming requests on these routes dksfsdlal
+// listen for incoming requests on these routes
 // for example 'user/add' will send requests to our `createUser` function
 
 router.route('/add').post(validateUserBody, createUser);
