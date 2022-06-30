@@ -3,7 +3,7 @@
 const EPHEMERAL_DB = {};
 
 const getUser = (req, res, next) => {
-    const { id } = req.query;
+    const { id } = req.params;
 
     if (EPHEMERAL_DB[id]) {
         // a 200 response is sent when things have gone successfully
@@ -33,11 +33,11 @@ const updateUser = (req, res, next) => {
 };
 
 const removeUser = (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.params;
 
     if (EPHEMERAL_DB[id]) {
         delete EPHEMERAL_DB[id];
-        res.status(200).send({ message: `User with ${id} removed` });
+        res.status(200).send({ message: `User with id: ${id} removed` });
     } else {
         res.status(400).send({ error: 'No user found' });
     }

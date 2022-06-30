@@ -12,9 +12,9 @@ const router = Router();
 // listen for incoming requests on these routes
 // for example 'user/add' will send requests to our `createUser` function
 
-router.route('/add').post(validateUserBody, createUser);
-router.route('/get').get(validateUserBody, getUser);
-router.route('/update').post(validateUserBody, updateUser);
-router.route('/delete').post(validateUserBody, removeUser);
+router.route('/').post(validateUserBody, createUser);
+router.route('/:id').get(validateUserBody, getUser);
+router.route('/').put(validateUserBody, updateUser);
+router.route('/:id').delete(validateUserBody, removeUser);
 
 module.exports = router;
