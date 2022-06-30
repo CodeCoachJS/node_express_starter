@@ -72,6 +72,16 @@ http://localhost:5000/user/123
 
 ---
 
+### Further Reading
+
+---
+
+CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
+REST Architecture: https://restfulapi.net/
+
+---
+
 ## Next Steps
 
 ---
