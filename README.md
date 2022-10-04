@@ -2,29 +2,11 @@
 
 ---
 
-Video Walkthrough => https://www.loom.com/share/b1a7cbc0f57444a281047eba2c42fe1c
-
-A barebones node express app with some basic CRUD operations using an object in place of a database. Includes unit tests using `supertest` https://www.npmjs.com/package/supertest
-
----
-
-## Architecture
-
----
-
-This app uses a common pattern of having `controllers` and `routes` in separate folders.
-
-Controllers are used to manipulate and query data.
-
-Routes simply listen for requests on certain paths and provide methods which are called on those routes.
-
-Middlewares are methods that are called before the request goes to a controller. In this app, we have a `validateUserBody` middleware which ensures all incoming requests have an `id` property - if they DO NOT, we simply reject the request - if they DO, we continue the request using `next`
-
----
-
 ## Getting Started
 
 ---
+
+`nvm use` (make sure you have node version manager installed)
 
 `npm install`
 
@@ -52,7 +34,11 @@ There are 4 routes you can reach from your localhost like so:
 
 [DELETE] `http://localhost:5000/user`
 
-### Examples:
+---
+
+## Examples:
+
+---
 
 To create a new user
 [POST] http://localhost:5000/user
@@ -82,8 +68,17 @@ REST Architecture: https://restfulapi.net/
 
 ---
 
-## Next Steps
+# One Small Problem 🤏
 
 ---
 
-You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+Oh no, it looks like our tests pass locally but not during our Github build using Github Actions?! What gives?
+
+<img src="./failed_pipeline.png"/>
+
+- Fork this project
+- Run the tests locally (follow the instructions above)
+- Add a commit to see the Github Actions get triggered which run the test suite
+- Fix the issue(s)?
+
+What was the root of the issue? How might a dev team avoid this embrrassing mistake in the future?
