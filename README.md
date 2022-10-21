@@ -81,4 +81,11 @@ Oh no, it looks like our tests pass locally but not during our Github build usin
 - Add a commit to see the Github Actions get triggered which run the test suite
 - Fix the issue(s)?
 
+---
+
+📼
+Here's a short walkthrough of Github Actions and the problem we are experiencing: https://www.loom.com/share/ac1961e48b494f609834e2874d773bf1
+
+---
+
 What was the root of the issue? How might a dev team avoid this embrrassing mistake in the future?
