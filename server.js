@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const allRoutes = require('./routes');
-const cors = require('cors');
-const { config } = require('dotenv');
+const express = require("express");
+const bodyParser = require("body-parser");
+const allRoutes = require("./routes");
+const cors = require("cors");
+const { config } = require("dotenv");
 
 // loads environment vars from .env
 config();
@@ -11,8 +11,8 @@ config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV !== 'test') {
-    app.listen(port, () => console.log(`Running on port ${port}`));
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => console.log(`Running on port ${port}`));
 }
 
 // we use cors library to prevent annoying cors issues

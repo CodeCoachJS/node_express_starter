@@ -42,7 +42,7 @@ Middlewares are methods that are called before the request goes to a controller.
 
 You'll see many comments throughout the codebase which highlight common patterns and libraries.
 
-There are 4 routes you can reach from your localhost like so:
+There are 5 routes you can reach from your localhost like so:
 
 [GET] `http://localhost:5000/user`
 
@@ -52,9 +52,22 @@ There are 4 routes you can reach from your localhost like so:
 
 [DELETE] `http://localhost:5000/user`
 
+---
+
+### For uploading files
+
+---
+
+[POST] `http://localhost:5000/files/upload`
+
+---
+
 ### Examples:
 
-To create a new user
+---
+
+**To create a new user**
+
 [POST] http://localhost:5000/user
 
 Payload:
@@ -67,8 +80,17 @@ Payload:
 }
 ```
 
-To get a user with an id of 123:
+**To get a user with an id of 123:**
+
 http://localhost:5000/user/123
+
+**To upload a file using a tool like postman:**
+
+Video Walkthrough: https://www.loom.com/share/0b3645c2c5b94311961d606f9ae22bd3
+
+You can use an example csv file at `mockData/uber_jan_feb.csv`
+
+<img src="mockData/postman_example.png">
 
 ---
 
@@ -87,3 +109,5 @@ REST Architecture: https://restfulapi.net/
 ---
 
 You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+
+Add validation middleware for the files controller. It should check that only `.csv` files are accepted.
