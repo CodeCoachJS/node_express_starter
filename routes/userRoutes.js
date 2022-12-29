@@ -1,10 +1,10 @@
-const { Router } = require('express');
 const {
-  getUser,
   createUser,
+  getUser,
   removeUser,
   updateUser,
 } = require('../controllers/userController');
+const { Router } = require('express');
 const { validateUserBody } = require('../middlewares/validateUserBody');
 
 const router = Router();

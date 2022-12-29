@@ -1,8 +1,8 @@
-const express = require('express');
-const { config } = require('dotenv');
-const bodyParser = require('body-parser');
 const allRoutes = require('./routes');
+const bodyParser = require('body-parser');
+const { config } = require('dotenv');
 const cors = require('cors');
+const express = require('express');
 
 // loads environment vars from .env
 config();

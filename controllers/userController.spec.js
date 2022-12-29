@@ -1,5 +1,5 @@
-const request = require('supertest');
 const { app } = require('../server');
+const request = require('supertest');
 
 describe('userController', () => {
   // let's add a user before each test that we can rely on to be in the database
