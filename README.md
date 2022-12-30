@@ -1,113 +1,88 @@
-# Node Express Starter
+# Enforcing Coding Styles and Rules
 
 ---
 
-Video Walkthrough => https://www.loom.com/share/b1a7cbc0f57444a281047eba2c42fe1c
+Writing good code is one thing... keeping it that way is another.
 
-A barebones node express app with some basic CRUD operations using an object in place of a database. Includes unit tests using `supertest` https://www.npmjs.com/package/supertest
+You have a few options on a software team to maintain code quality:
 
----
+1. Peer Reviews
+2. Automated quality checks
+3. Code guideline documents
 
-## Architecture
+I personally like to use a combination of all 3 options. Linters are a great solution to maintain standards and rules across a codebase which allows developers to focus on the important pieces of logic rather than whether to use tabs or spaces... tabs btw.
 
----
+**So What is a linter?**
 
-This app uses a common pattern of having `controllers` and `routes` in separate folders.
+A linter is an automated analyzing of your source code to look for bugs and stylistic errors.
 
-Controllers are used to manipulate and query data.
+Check out `.eslintrc.js` for an example of a linter for a NodeJS project.
 
-Routes simply listen for requests on certain paths and provide methods which are called on those routes.
-
-Middlewares are methods that are called before the request goes to a controller. In this app, we have a `validateUserBody` middleware which ensures all incoming requests have an `id` property - if they DO NOT, we simply reject the request - if they DO, we continue the request using `next`
-
----
-
-## Getting Started
+This particular project enforces @jsdoc notation (basically a style of commenting for functions), single quotes and alphabetical imports among other things.
 
 ---
 
-`npm install`
-
-`npm start`
-
-`npm run dev` to start with hot reloading
-
-`npm test`
+### TODO
 
 ---
 
-## How To Use
+Ruh roh, our build is failing.
 
----
+<img src="./mockData/build_error.png">
 
-You'll see many comments throughout the codebase which highlight common patterns and libraries.
+To replicate the scenario - first fork this repo.
 
-There are 5 routes you can reach from your localhost like so:
-
-[GET] `http://localhost:5000/user`
-
-[POST] `http://localhost:5000/user`
-
-[PUT] `http://localhost:5000/user`
-
-[DELETE] `http://localhost:5000/user`
-
----
-
-### For uploading files
-
----
-
-[POST] `http://localhost:5000/files/upload`
-
----
-
-### Examples:
-
----
-
-**To create a new user**
-
-[POST] http://localhost:5000/user
-
-Payload:
+To start the project:
 
 ```js
-{
-    "id": "123",
-    "email": "brianjenney83@gmail.com",
-    "name": "brian"
-}
+npm i
+npm start
 ```
 
-**To get a user with an id of 123:**
+Navigate to `./controllers/userController.js` and fix the linter error for `getUser`
 
-http://localhost:5000/user/123
+<img src="./mockData/lint_error_js_doc.png">
 
-**To upload a file using a tool like postman:**
+Now push your changes up to your local remote branch
 
-Video Walkthrough: https://www.loom.com/share/0b3645c2c5b94311961d606f9ae22bd3
+```js
+git add .
+git commit -m "fixed error"
+git push
+```
 
-You can use an example csv file at `mockData/uber_jan_feb.csv`
+You may notice some actions happening when you run the commit command. There is a library `husky` which can intercept the git commands and run some side effects. In this case we are running `eslint` on all `staged` files.
 
-<img src="mockData/postman_example.png">
-
----
-
-### Further Reading
-
----
-
-CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-
-REST Architecture: https://restfulapi.net/
+You may notice your build still fails?! What gives?
 
 ---
 
-## Next Steps
+_Challenge 1_
 
 ---
 
-You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+Update the `.husky/pre-commit` to run the linter on ALL files instead of just the ones that are `staged` or changed.
 
-Add validation middleware for the files controller. It should check that only `.csv` files are accepted.
+Next, make sure all tests run before each commit.
+
+Now fix all remaining errors and fix the pipeline.
+
+---
+
+_Challenge 2_
+
+---
+
+Add a new rule to the `.eslintrc.js` file to show an error when a developer uses a `forEach` method instead of a `for...of` method.
+
+Hint: Look up the `unicorn` linting package and figure out how to use it for this purpose 🦄.
+
+---
+
+**Food for thought**
+
+---
+
+1. Sometimes you walk into a massive project which is a mess. Adding a linter that's too aggressive can do more harm than good. How might you approach this situation where you want to set some standards but not block developers from working and having to clean up files they haven't touched?
+
+2. It's always good to ask why. What is the point of using a linter? Random rules? What are some of the benefits you can see from using a linter?

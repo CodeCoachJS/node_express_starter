@@ -2,13 +2,6 @@
 // this object will act as temporary storage for our user object
 const EPHEMERAL_DB = {};
 
-/**
- * @description creates a user
- * @param {Object} req request
- * @param {Object} res response
- * @param {VoidFunction} next function to continue the operation
- * @returns {VoidFunction} response or next
- */
 const getUser = (req, res, next) => {
   const { id } = req.params;
 
