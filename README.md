@@ -1,24 +1,4 @@
-# Node Express Starter
-
----
-
-Video Walkthrough => https://www.loom.com/share/b1a7cbc0f57444a281047eba2c42fe1c
-
-A barebones node express app with some basic CRUD operations using an object in place of a database. Includes unit tests using `supertest` https://www.npmjs.com/package/supertest
-
----
-
-## Architecture
-
----
-
-This app uses a common pattern of having `controllers` and `routes` in separate folders.
-
-Controllers are used to manipulate and query data.
-
-Routes simply listen for requests on certain paths and provide methods which are called on those routes.
-
-Middlewares are methods that are called before the request goes to a controller. In this app, we have a `validateUserBody` middleware which ensures all incoming requests have an `id` property - if they DO NOT, we simply reject the request - if they DO, we continue the request using `next`
+# The Stampeding Herd
 
 ---
 
@@ -36,78 +16,110 @@ Middlewares are methods that are called before the request goes to a controller.
 
 ---
 
-## How To Use
+## Tame the Herd 🐘
 
 ---
 
-You'll see many comments throughout the codebase which highlight common patterns and libraries.
+You can test the endpoint using the following route and payload.
 
-There are 5 routes you can reach from your localhost like so:
+**[POST]** `http://localhost:5000/superexpensive/`
 
-[GET] `http://localhost:5000/user`
-
-[POST] `http://localhost:5000/user`
-
-[PUT] `http://localhost:5000/user`
-
-[DELETE] `http://localhost:5000/user`
-
----
-
-### For uploading files
-
----
-
-[POST] `http://localhost:5000/files/upload`
-
----
-
-### Examples:
-
----
-
-**To create a new user**
-
-[POST] http://localhost:5000/user
-
-Payload:
+Payload
 
 ```js
 {
-    "id": "123",
-    "email": "brianjenney83@gmail.com",
-    "name": "brian"
+  "id": "some_id";
 }
 ```
 
-**To get a user with an id of 123:**
-
-http://localhost:5000/user/123
-
-**To upload a file using a tool like postman:**
-
-Video Walkthrough: https://www.loom.com/share/0b3645c2c5b94311961d606f9ae22bd3
-
-You can use an example csv file at `mockData/uber_jan_feb.csv`
-
-<img src="mockData/postman_example.png">
+**[GET]** `http://localhost:5000/superexpensive/clear` - to clear the cache
 
 ---
 
-### Further Reading
+## What is a Stampeding Herd?
 
 ---
 
-CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+Let's look at an example using a cache and an API endpoint:
 
-REST Architecture: https://restfulapi.net/
+Pretend we have an endpoint that does a very expensive operation. It gets called a lot throughout the day and returns the same data for the most part.
+
+A simple solution to prevent this endpoint from getting called too often is to use a cache. That way when 1000s of requests are made, most will hit the cache and speed up the response.
+
+One problem though.
+
+This is a very popular service. At certain times of the day our endpoint can receive 100s or concurrent requests (requests happening at the same time). If the cache is empty at this time we actually get 100s of cache misses!
+
+Now these 100s of concurrent requests hit the backend which falls over!
+
+<img src="thundering_herd.png">
 
 ---
 
-## Next Steps
+### TODO
 
 ---
 
-You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+In this app we have a `superExpensiveController` which calls a `superExpensiveOperation` which returns a response. We cache results in order to not call the `superExpensiveOperation`.
 
-Add validation middleware for the files controller. It should check that only `.csv` files are accepted.
+**1 problem:**
+
+The stampeding herd happens every morning at 8AM when our users wake up which results in a ton of cache misses and making our system prone to crashing.
+
+We must solve this.
+
+Run the following script while in `npm run dev` mode.
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/ &
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/ &
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/ &
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/ &
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/ &
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":"stampeding"}' \
+  http://localhost:5000/superexpensive/
+
+```
+
+This script sends 6 concurrent requests to our controller and you should see:
+
+<img src="./miss_cache.png">
+
+You need to find a solution so that when a series of concurrent requests reaches the endpoint, they don't all miss the cache.
+
+**To test your solution, after sending the request above make sure you clear the cache by sending a **[GET]** `http://localhost:5000/superexpensive/clear`**
+
+You will know your solution works once you run the script above and see:
+
+<img src="./fixed_cache.png"/>
+
+Here's some reading on how Instagram solved this problem:
+
+https://instagram-engineering.com/thundering-herds-promises-82191c8af57d
+
+---
+
+### Food for thought && Bonuses
+
+---
+
+1. Make a video/diagram explaining this thundering herd problem
+2. What are some libraries which might solve this issue?
+3. What is a table-lock? How could this be applied to this problem?
