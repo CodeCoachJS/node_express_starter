@@ -48,9 +48,9 @@ A simple solution to prevent this endpoint from getting called too often is to u
 
 One problem though.
 
-This is a very popular service. At certain times of the day our endpoint can receive 100s or concurrent requests (requests happening at the same time). If the cache is empty at this time we actually get 100s of cache misses!
+This is a very popular service. At certain times of the day our endpoint can receive 100s of concurrent requests (requests happening at the same time). If the cache is empty at this time we actually get 100s of cache misses since they all look at an empty cache at the same time!
 
-Now these 100s of concurrent requests hit the backend which falls over!
+Now these 100s of concurrent requests trigger a very expensive operation which eventually fails from all the requests!
 
 <img src="thundering_herd.png">
 
@@ -60,7 +60,7 @@ Now these 100s of concurrent requests hit the backend which falls over!
 
 ---
 
-In this app we have a `superExpensiveController` which calls a `superExpensiveOperation` which returns a response. We cache results in order to not call the `superExpensiveOperation`.
+In this app we have a `superExpensiveController` which calls a `superExpensiveOperation` which returns a response. We cache results in order to not call the `superExpensiveOperation` too often.
 
 **1 problem:**
 
