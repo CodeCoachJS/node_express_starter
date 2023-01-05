@@ -15,6 +15,21 @@ const validateUserBody = (req, res, next) => {
   next();
 };
 
+/**
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
+const checkForFileInBody = (req, res, next) => {
+  if (!req.body.file) {
+    return res.status(400).send({ message: 'You must include a file' });
+  }
+  next();
+};
+
 module.exports = {
   validateUserBody,
+  checkForFileInBody,
 };

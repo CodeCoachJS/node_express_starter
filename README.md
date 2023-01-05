@@ -20,6 +20,10 @@ Check out `.eslintrc.js` for an example of a linter for a NodeJS project.
 
 This particular project enforces @jsdoc notation (basically a style of commenting for functions), single quotes and alphabetical imports among other things.
 
+**Check out this video walkthrough:**
+
+https://www.loom.com/share/466eb771e07d45c9ac5786fc347018e5
+
 ---
 
 ### TODO
