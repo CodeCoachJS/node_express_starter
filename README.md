@@ -54,6 +54,8 @@ Now these 100s of concurrent requests trigger a very expensive operation which e
 
 <img src="thundering_herd.png">
 
+**Check out this video walkthrough:** https://www.loom.com/share/da1e0f4e8a7943f6b1ab1fdccab9d3dc
+
 ---
 
 ### TODO

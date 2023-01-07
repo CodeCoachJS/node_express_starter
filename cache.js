@@ -1,34 +1,23 @@
-const redis = require("redis");
-
 class Cache {
   constructor() {
-    this.client = redis.createClient();
-    this.client.connect();
-
-    this.client.on("error", (err) => {
-      console.log("Error " + err);
-    });
-
-    this.client.on("connect", () => {
-      console.log("🚀 Connected to Redis");
-    });
+    this.map = new Map();
   }
 
   async get(key) {
     if (!key) return;
-    const data = await this.client.get(key);
+    const data = await Promise.resolve(this.map.get(key));
     if (data) {
-      return JSON.parse(data);
+      return data;
     }
   }
 
   async set(key, value) {
     if (!key || !value) return;
-    await this.client.set(key, JSON.stringify(value));
+    await Promise.resolve(this.map.set(key, value));
   }
 
   async clear() {
-    await this.client.flushDb();
+    await Promise.resolve(this.map.clear());
   }
 }
 
