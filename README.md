@@ -1,4 +1,4 @@
-# The Stampeding Herd
+# The Cache Stampede
 
 ---
 
@@ -36,7 +36,7 @@ Payload
 
 ---
 
-## What is a Stampeding Herd?
+## What is a Cache Stampede?
 
 ---
 
@@ -66,7 +66,7 @@ In this app we have a `superExpensiveController` which calls a `superExpensiveOp
 
 **1 problem:**
 
-The stampeding herd happens every morning at 8AM when our users wake up which results in a ton of cache misses and making our system prone to crashing.
+The Cache Stampede happens every morning at 8AM when our users wake up which results in a ton of cache misses and making our system prone to crashing.
 
 We must solve this.
 
@@ -116,12 +116,14 @@ Here's some reading on how Instagram solved this problem:
 
 https://instagram-engineering.com/thundering-herds-promises-82191c8af57d
 
+https://en.wikipedia.org/wiki/Cache_stampede
+
 ---
 
 ### Food for thought && Bonuses
 
 ---
 
-1. Make a video/diagram explaining this thundering herd problem
+1. Make a video/diagram explaining this cache stampede problem
 2. What are some libraries which might solve this issue?
 3. What is a table-lock? How could this be applied to this problem?
