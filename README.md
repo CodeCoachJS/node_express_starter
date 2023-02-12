@@ -32,7 +32,7 @@ Middlewares are methods that are called before the request goes to a controller.
 
 `npm run dev` to start with hot reloading
 
-`npm test`
+`npm test` these are not created... yet 😉
 
 ---
 
@@ -104,10 +104,12 @@ REST Architecture: https://restfulapi.net/
 
 ---
 
-## Next Steps
+## TODO
 
 ---
 
-You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+Add tests for the `csvController` and `userController` using Super Test https://www.npmjs.com/package/supertest.
 
-Add validation middleware for the files controller. It should check that only `.csv` files are accepted.
+Video WalkThrough: https://www.loom.com/share/11e8c45687cb4e24a70584b21275f2c7
+
+How is this different from front end tests you've written before?
