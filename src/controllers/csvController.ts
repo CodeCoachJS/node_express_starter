@@ -1,28 +1,35 @@
-const { parse } = require("csv-parse");
-const fs = require("fs");
-const uploadCsv = async (req, res, next) => {
+import { parse } from "csv-parse";
+import { Request, Response } from "express";
+import fs from "fs";
+
+const uploadCsv = async (req: Request, res: Response) => {
   try {
     const { file } = req;
 
-    const json = [];
+    if (!file) {
+      return res.status(400).send({ message: "No file uploaded" });
+    }
+
+    const json: unknown[] = [];
 
     // we want to wait for the file to be parsed before we send a response
-    await new Promise((res, rej) => {
+    await new Promise((res, rej): void => {
       fs.createReadStream(`./${file.path}`)
         .pipe(parse({ delimiter: ",", from_line: 1 }))
         .on("data", function (row) {
           json.push(row);
         })
         .on("end", () => {
-          res();
+          res("Success");
         })
         .on("error", (err) => {
           rej(err);
         });
     });
     res.status(200).send({ data: json });
-  } catch (err) {
-    res.status(500).send({ message: "File upload failed", err: err.message });
+  } catch (err: unknown) {
+    if (err instanceof Error)
+      res.status(500).send({ message: "File upload failed", err: err.message });
   } finally {
     // we want to clean up the files after we are done with them
     const files = fs.readdirSync("./temp");
@@ -32,6 +39,4 @@ const uploadCsv = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  uploadCsv,
-};
+export { uploadCsv };
