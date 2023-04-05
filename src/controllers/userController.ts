@@ -4,6 +4,7 @@ type UserTable = {
   [key: string]: {
     name: string;
     email: string;
+    id?: string | number;
   };
 };
 

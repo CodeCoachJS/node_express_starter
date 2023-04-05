@@ -1,6 +1,7 @@
-const request = require("supertest");
-const { app } = require("../server");
-const fs = require("fs");
+import request from "supertest";
+import { app } from "../server";
+import fs from "fs";
+import path from "path";
 
 describe("csvController", () => {
   beforeEach(() => {
@@ -17,7 +18,10 @@ describe("csvController", () => {
   it("parses datat from a csv file", async () => {
     const res = await request(app)
       .post("/files/upload")
-      .attach("csvFile", "./mockData/uber_jan_feb.csv");
+      .attach(
+        "csvFile",
+        path.resolve(__dirname, "../mockData/uber_jan_feb.csv")
+      );
 
     const json = res.body.data;
     expect(json.length).toEqual(355);
@@ -26,14 +30,16 @@ describe("csvController", () => {
   it("rejects a request with no csv file", async () => {
     const res = await request(app).post("/files/upload");
 
-    const err = res.body.err;
-    expect(err).toEqual("Cannot read properties of undefined (reading 'path')");
+    expect(res.status).toEqual(400);
   });
 
   it("unlinks all files in the temp folder", async () => {
-    const res = await request(app)
+    await request(app)
       .post("/files/upload")
-      .attach("csvFile", "./mockData/uber_jan_feb.csv");
+      .attach(
+        "csvFile",
+        path.resolve(__dirname, "../mockData/uber_jan_feb.csv")
+      );
 
     expect(fs.unlinkSync).toHaveBeenCalled();
   });

@@ -24,4 +24,4 @@ app.use(bodyParser.json());
 // lets load all our routes and start making requests!
 app.use(allRoutes);
 
-module.exports = { app };
+export { app };
