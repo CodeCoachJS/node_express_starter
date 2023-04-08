@@ -30,7 +30,7 @@ Middlewares are methods that are called before the request goes to a controller.
 
 `npm start`
 
-`npm run dev` to start with hot reloading
+`npm run dev` to start with hot reloading [this will not work until you complete the challenge]
 
 `npm test`
 
@@ -104,10 +104,12 @@ REST Architecture: https://restfulapi.net/
 
 ---
 
-## Next Steps
+## TODO
 
 ---
 
-You can create a true database connection to persist your data and add new routes, controllers and middlewares.
+Do a search for any use of the evil `any` type and all `TODO`s which are located in the controller files. Developers will often 'cheat' by using the `any` type to avoid defining types. I mean, what's the point of using TS if you're going to avoid types in the first place.
 
-Add validation middleware for the files controller. It should check that only `.csv` files are accepted.
+Next, look up TypeScript generics. What are they? Why might they be useful in this project or any TS application?.
+
+Lastly, what the `tsconfig.json` file doing?

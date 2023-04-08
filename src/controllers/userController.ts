@@ -1,11 +1,7 @@
 import { Request, Response } from "express";
 
 type UserTable = {
-  [key: string]: {
-    name: string;
-    email: string;
-    id?: string | number;
-  };
+  // TODO: add types
 };
 
 // in production we would use an actual database
