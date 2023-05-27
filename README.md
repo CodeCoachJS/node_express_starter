@@ -108,8 +108,8 @@ REST Architecture: https://restfulapi.net/
 
 ---
 
-Do a search for any use of the evil `any` type and all `TODO`s which are located in the controller files. Developers will often 'cheat' by using the `any` type to avoid defining types. I mean, what's the point of using TS if you're going to avoid types in the first place.
+1. Search for any usage of the any type and address them. Developers often resort to using the any type as a shortcut to avoid explicitly defining types. However, in a TypeScript project, it is important to replace any with specific types for better type safety and code clarity.
 
-Next, look up TypeScript generics. What are they? Why might they be useful in this project or any TS application?.
+2. Look up TypeScript generics. Understand what they are and how they can be useful in this project or any TypeScript application. Generics provide a way to create reusable and flexible code components by enabling types to be parameterized.
 
-Lastly, what the `tsconfig.json` file doing?
+3. Explore the purpose of the tsconfig.json file. The tsconfig.json file is a TypeScript configuration file that specifies various
