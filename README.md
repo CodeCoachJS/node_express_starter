@@ -1,8 +1,10 @@
-# Node Express Starter
+# Node Express Starter Typescript Version
 
 ---
 
-Video Walkthrough => https://www.loom.com/share/b1a7cbc0f57444a281047eba2c42fe1c
+**Video Walkthrough** => https://www.loom.com/share/b1a7cbc0f57444a281047eba2c42fe1c
+
+**Typescript Intro to Generics and TS Config** => https://www.loom.com/share/0fcb73bf62134b53ba34eb8a572548bf?sid=a0c0f795-be7b-47c3-a66f-4f2daaa93494
 
 A barebones node express app with some basic CRUD operations using an object in place of a database. Includes unit tests using `supertest` https://www.npmjs.com/package/supertest
 
@@ -102,6 +104,8 @@ CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
 REST Architecture: https://restfulapi.net/
 
+Generics in TS: https://www.typescriptlang.org/docs/handbook/2/generics.html
+
 ---
 
 ## TODO
@@ -110,6 +114,6 @@ REST Architecture: https://restfulapi.net/
 
 1. Search for any usage of the any type and address them. Developers often resort to using the any type as a shortcut to avoid explicitly defining types. However, in a TypeScript project, it is important to replace any with specific types for better type safety and code clarity.
 
-2. Look up TypeScript generics. Understand what they are and how they can be useful in this project or any TypeScript application. Generics provide a way to create reusable and flexible code components by enabling types to be parameterized.
+2. Look up TypeScript generics. Understand what they are and how they can be useful in this project or any TypeScript application. Generics provide a way to create reusable and flexible code types by enabling types to be parameterized. https://www.typescriptlang.org/docs/handbook/2/generics.html
 
 3. Explore the purpose of the tsconfig.json file. The tsconfig.json file is a TypeScript configuration file that specifies various rules for the compilation of your TS files.
