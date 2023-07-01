@@ -112,4 +112,4 @@ REST Architecture: https://restfulapi.net/
 
 2. Look up TypeScript generics. Understand what they are and how they can be useful in this project or any TypeScript application. Generics provide a way to create reusable and flexible code components by enabling types to be parameterized.
 
-3. Explore the purpose of the tsconfig.json file. The tsconfig.json file is a TypeScript configuration file that specifies various
+3. Explore the purpose of the tsconfig.json file. The tsconfig.json file is a TypeScript configuration file that specifies various rules for the compilation of your TS files.
