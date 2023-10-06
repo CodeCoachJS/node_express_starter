@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const {
-    createUser,
-    getUser,
-    removeUser,
-    updateUser,
+	createUser,
+	getUser,
+	removeUser,
+	updateUser,
+	writeLikeAnInfluencer,
 } = require('../controllers/userController');
 const { validateUserBody } = require('../middlewares/validateUserBody');
 
@@ -12,6 +13,7 @@ const router = Router();
 // listen for incoming requests on these routes
 // for example 'user/add' will send requests to our `createUser` function
 
+router.route('/chat').post(writeLikeAnInfluencer);
 router.route('/').post(validateUserBody, createUser);
 router.route('/:id').get(validateUserBody, getUser);
 router.route('/').put(validateUserBody, updateUser);
